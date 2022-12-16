@@ -2,6 +2,7 @@ package domain.table;
 
 import domain.Menu;
 import domain.order.OrderMenus;
+import domain.order.PaymentMethod;
 import java.util.Map;
 
 public class Table {
@@ -15,6 +16,10 @@ public class Table {
 
     public boolean matchNumber(int tableNumber) {
         return this.number == tableNumber;
+    }
+
+    public int getNumber() {
+        return number;
     }
 
     public String topLine() {
@@ -41,5 +46,9 @@ public class Table {
 
     public String orderMenusFormat() {
         return orderMenus.format();
+    }
+
+    public String payWith(PaymentMethod paymentMethod) {
+        orderMenus.getTotalPrice();
     }
 }

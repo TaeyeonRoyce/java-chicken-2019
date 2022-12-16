@@ -1,5 +1,6 @@
 import domain.Menu;
 import domain.MenuRepository;
+import domain.order.PaymentMethod;
 import domain.pos.PosJob;
 import domain.pos.PosStatus;
 import domain.table.Table;
@@ -65,6 +66,10 @@ public class PosController {
 
     private void pay(Table table) {
         outputView.printOrderStatus(table);
+        SelectRequest paymentMethodRequest = inputView.getPaymentMethod(table.getNumber());
+        PaymentMethod paymentMethod = PaymentMethod.fromCommandCode(paymentMethodRequest.getNumber());
+
+        table.payWith(paymentMethod);
     }
 
 

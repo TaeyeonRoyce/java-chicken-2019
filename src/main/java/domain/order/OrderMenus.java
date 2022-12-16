@@ -29,4 +29,8 @@ public class OrderMenus {
         }
         return sb.toString();
     }
+
+    public int getTotalPrice() {
+        return 0;
+    }
 }

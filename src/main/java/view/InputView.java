@@ -32,6 +32,12 @@ public class InputView {
         return getSelectRequest(message);
     }
 
+    public SelectRequest getPaymentMethod(int tableNumber) {
+        String format = "## %d번 테이블의 결제를 진행합니다.\n"
+                + "## 신용 카드는 1번, 현금은 2번";
+        return getSelectRequest(String.format(format, tableNumber));
+    }
+
 
     private SelectRequest getSelectRequest(String message) {
         System.out.println(message);
