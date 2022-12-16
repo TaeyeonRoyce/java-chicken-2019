@@ -5,8 +5,7 @@ import domain.table.Table;
 import domain.table.TableRepository;
 import view.InputView;
 import view.OutputView;
-import view.dto.request.PosJobRequest;
-import view.dto.request.TableSelectRequest;
+import view.dto.request.SelectRequest;
 
 public class PosController {
     private final InputView inputView;
@@ -30,9 +29,9 @@ public class PosController {
         PosJob[] posJobs = PosJob.values();
         outputView.mainView(posJobs);
 
-        PosJobRequest posJobRequest = inputView.getMainOptionRequest();
+        SelectRequest posJobRequest = inputView.getMainOptionRequest();
 
-        return posJobRequest.toPosJob();
+        return PosJob.fromOptionNumber(posJobRequest.getTableNumber());
     }
 
     private void workByPosJob(PosJob posJob) {
@@ -46,13 +45,15 @@ public class PosController {
 
     private Table requestTableSelection() {
         outputView.printTables(TableRepository.tables());
-        TableSelectRequest tableSelectionRequest = inputView.getTableSelection();
+        SelectRequest tableSelectionRequest = inputView.getTableSelection();
 
         return TableRepository.findByTableNumber(tableSelectionRequest.getTableNumber());
     }
 
     private void enrollOrder(Table table) {
         outputView.printMenus(MenuRepository.menus());
+//        inputView.getMenu();
+//        inputView.getQuantity();
     }
 
 
