@@ -26,7 +26,7 @@ public class SelectRequest {
         }
     }
 
-    public int getTableNumber() {
+    public int getNumber() {
         return Integer.parseInt(selectNumber);
     }
 }

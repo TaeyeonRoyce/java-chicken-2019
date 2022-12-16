@@ -27,6 +27,11 @@ public class InputView {
         String message = "## 등록할 메뉴를 선택하세요.";
         return getSelectRequest(message);
     }
+    public SelectRequest getQuantity() {
+        String message = "## 메뉴의 수량을 입력하세요.";
+        return getSelectRequest(message);
+    }
+
 
     private SelectRequest getSelectRequest(String message) {
         System.out.println(message);

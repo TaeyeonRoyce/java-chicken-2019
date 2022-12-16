@@ -1,3 +1,4 @@
+import domain.Menu;
 import domain.MenuRepository;
 import domain.pos.PosJob;
 import domain.pos.PosStatus;
@@ -31,7 +32,7 @@ public class PosController {
 
         SelectRequest posJobRequest = inputView.getMainOptionRequest();
 
-        return PosJob.fromOptionNumber(posJobRequest.getTableNumber());
+        return PosJob.fromOptionNumber(posJobRequest.getNumber());
     }
 
     private void workByPosJob(PosJob posJob) {
@@ -47,13 +48,16 @@ public class PosController {
         outputView.printTables(TableRepository.tables());
         SelectRequest tableSelectionRequest = inputView.getTableSelection();
 
-        return TableRepository.findByTableNumber(tableSelectionRequest.getTableNumber());
+        return TableRepository.findByTableNumber(tableSelectionRequest.getNumber());
     }
 
     private void enrollOrder(Table table) {
         outputView.printMenus(MenuRepository.menus());
-        SelectRequest menu = inputView.getMenu();
-//        inputView.getQuantity();
+        SelectRequest menuRequest = inputView.getMenu();
+        SelectRequest quantityRequest = inputView.getQuantity();
+        Menu menu = MenuRepository.findByMenuNumber(menuRequest.getNumber());
+
+
     }
 
 
