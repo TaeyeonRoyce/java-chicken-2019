@@ -1,7 +1,10 @@
 package view.dto.request;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import domain.MainOption;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -19,6 +22,15 @@ class MainOptionRequestTest {
         assertThatThrownBy(() -> MainOptionRequest.of(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    public void 입력된_숫자에_따라_주요_기능_선택으로_정상_변환_된다() {
+        MainOptionRequest mainOptionRequest = MainOptionRequest.of("1");
+
+        MainOption mainOption = mainOptionRequest.toMainOption();
+        assertThat(mainOption).isEqualTo(MainOption.ENROLL);
+    }
+
 
 
 }

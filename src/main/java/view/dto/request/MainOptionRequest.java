@@ -1,5 +1,6 @@
 package view.dto.request;
 
+import domain.MainOption;
 import java.util.regex.Pattern;
 
 public class MainOptionRequest {
@@ -22,5 +23,9 @@ public class MainOptionRequest {
         if (!Pattern.matches(moveCommandRegex, userInput)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public MainOption toMainOption() {
+        return MainOption.fromOptionNumber(optionRequest);
     }
 }

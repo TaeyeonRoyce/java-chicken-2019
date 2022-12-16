@@ -3,6 +3,7 @@ package domain.pos;
 import domain.MainOption;
 import view.InputView;
 import view.OutputView;
+import view.dto.request.MainOptionRequest;
 
 public class Pos {
     private final InputView inputView;
@@ -18,7 +19,21 @@ public class Pos {
         MainOption[] mainOptions = MainOption.values();
         outputView.mainView(mainOptions);
 
-        inputView.getMainOptionRequest();
+        MainOptionRequest mainOptionRequest = inputView.getMainOptionRequest();
+
+        workBySelectedOption(mainOptionRequest.toMainOption());
+    }
+
+    private void workBySelectedOption(MainOption option) {
+        if (option == MainOption.ENROLL) {
+//            enroll();
+            return;
+        }
+
+        if (option == MainOption.PAY) {
+//            pay();
+            return;
+        }
     }
 
     public PosStatus status() {

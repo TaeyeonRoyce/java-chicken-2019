@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Arrays;
+
 public enum MainOption {
     ENROLL(1, "주문등록"),
     PAY(2, "결제하기"),
@@ -11,6 +13,13 @@ public enum MainOption {
     MainOption(int optionNumber, String message) {
         this.optionNumber = optionNumber;
         this.message = message;
+    }
+
+    public static MainOption fromOptionNumber(int optionNumber) {
+        return Arrays.stream(MainOption.values())
+                .filter(options -> options.optionNumber == optionNumber)
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     public String outputFormat() {
