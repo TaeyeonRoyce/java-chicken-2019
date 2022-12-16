@@ -1,4 +1,5 @@
 import domain.pos.PosJob;
+import domain.pos.PosStatus;
 import domain.table.Table;
 import domain.table.TableRepository;
 import view.InputView;
@@ -9,29 +10,37 @@ import view.dto.request.TableSelectRequest;
 public class PosController {
     private final InputView inputView;
     private final OutputView outputView;
-    private PosJob posJob;
 
     public PosController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
-    public void run() {
-        updatePosJob();
+    public PosStatus run() {
+        PosJob posJob = requestPosJob();
         if (posJob == PosJob.TERMINATE) {
-            return;
+            return PosStatus.TERMINATED;
         }
-
-        Table tableSelection = requestTableSelection();
+        workByPosJob(posJob);
+        return PosStatus.RUN;
     }
 
-    private void updatePosJob() {
+    private void workByPosJob(PosJob posJob) {
+        Table selectedTable = requestTableSelection();
+        if (posJob == PosJob.ENROLL) {
+            enrollOrder(selectedTable);
+            return;
+        }
+        pay(selectedTable);
+    }
+
+    private PosJob requestPosJob() {
         PosJob[] posJobs = PosJob.values();
         outputView.mainView(posJobs);
 
         PosJobRequest posJobRequest = inputView.getMainOptionRequest();
 
-        this.posJob = posJobRequest.toPosJob();
+        return posJobRequest.toPosJob();
     }
 
     private Table requestTableSelection() {
@@ -40,10 +49,4 @@ public class PosController {
 
         return TableRepository.findByTableNumber(tableSelectionRequest.getTableNumber());
     }
-
-    public boolean isProgramRunnable() {
-        return posJob == PosJob.TERMINATE;
-    }
-
-
 }
