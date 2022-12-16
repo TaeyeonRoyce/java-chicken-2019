@@ -1,3 +1,4 @@
+import domain.MenuRepository;
 import domain.pos.PosJob;
 import domain.pos.PosStatus;
 import domain.table.Table;
@@ -25,15 +26,6 @@ public class PosController {
         return PosStatus.RUN;
     }
 
-    private void workByPosJob(PosJob posJob) {
-        Table selectedTable = requestTableSelection();
-        if (posJob == PosJob.ENROLL) {
-            enrollOrder(selectedTable);
-            return;
-        }
-        pay(selectedTable);
-    }
-
     private PosJob requestPosJob() {
         PosJob[] posJobs = PosJob.values();
         outputView.mainView(posJobs);
@@ -43,10 +35,25 @@ public class PosController {
         return posJobRequest.toPosJob();
     }
 
+    private void workByPosJob(PosJob posJob) {
+        Table selectedTable = requestTableSelection();
+        if (posJob == PosJob.ENROLL) {
+            enrollOrder(selectedTable);
+            return;
+        }
+//        pay(selectedTable);
+    }
+
     private Table requestTableSelection() {
         outputView.printTables(TableRepository.tables());
         TableSelectRequest tableSelectionRequest = inputView.getTableSelection();
 
         return TableRepository.findByTableNumber(tableSelectionRequest.getTableNumber());
     }
+
+    private void enrollOrder(Table table) {
+        outputView.printMenus(MenuRepository.menus());
+    }
+
+
 }

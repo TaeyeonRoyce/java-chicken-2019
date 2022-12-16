@@ -20,7 +20,7 @@ public class OutputView {
         for (PosJob posJob : posJobs) {
             System.out.println(posJob.outputFormat());
         }
-        System.out.println();
+        lineBreak();
     }
 
     public void printTables(final List<Table> tables) {
@@ -28,33 +28,39 @@ public class OutputView {
         printTopLine(tables);
         printTableLine(tables);
         printBottomLine(tables);
-        System.out.println();
+        lineBreak();
     }
 
-    private void printBottomLine(List<Table> tables) {
-        for (Table table : tables) {
-            System.out.print(table.bottomLine());
-        }
-        System.out.println();
-    }
-
-    private void printTableLine(List<Table> tables) {
-        for (Table table : tables) {
-            System.out.print(table.tableFormat());
-        }
-        System.out.println();
-    }
-
-    private void printTopLine(List<Table> tables) {
-        for (Table table : tables) {
+    private void printTopLine(final List<Table> tables) {
+        for (final Table table : tables) {
             System.out.print(table.topLine());
         }
-        System.out.println();
+        lineBreak();
     }
 
-    public static void printMenus(final List<Menu> menus) {
+    private void printTableLine(final List<Table> tables) {
+        for (final Table table : tables) {
+            System.out.print(table.tableFormat());
+        }
+        lineBreak();
+    }
+
+    private void printBottomLine(final List<Table> tables) {
+        for (final Table table : tables) {
+            System.out.print(table.bottomLine());
+        }
+        lineBreak();
+    }
+
+    public void printMenus(final List<Menu> menus) {
         for (final Menu menu : menus) {
             System.out.println(menu);
         }
+
+        lineBreak();
+    }
+
+    private void lineBreak() {
+        System.out.println();
     }
 }
