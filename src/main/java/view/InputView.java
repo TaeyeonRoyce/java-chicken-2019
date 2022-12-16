@@ -24,7 +24,6 @@ public class InputView {
     }
 
     public SelectRequest getMenu() {
-
         String message = "## 등록할 메뉴를 선택하세요.";
         return getSelectRequest(message);
     }
@@ -36,7 +35,4 @@ public class InputView {
 
         return SelectRequest.of(userInput);
     }
-//
-//    public void getMenu() {
-//    }
 }

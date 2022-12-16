@@ -52,7 +52,7 @@ public class PosController {
 
     private void enrollOrder(Table table) {
         outputView.printMenus(MenuRepository.menus());
-        inputView.getMenu();
+        SelectRequest menu = inputView.getMenu();
 //        inputView.getQuantity();
     }
 
