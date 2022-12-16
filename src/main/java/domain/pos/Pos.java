@@ -18,7 +18,7 @@ public class Pos {
         MainOption[] mainOptions = MainOption.values();
         outputView.mainView(mainOptions);
 
-//        inputView.selectFunction();
+        inputView.getMainOptionRequest();
     }
 
     public PosStatus status() {
