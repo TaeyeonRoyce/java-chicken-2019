@@ -38,6 +38,7 @@ public class PosController {
 
     private int requestTableSelection() {
         outputView.printTables(TableRepository.tables());
+        inputView.getTableSelection();
 
         return 0;
     }
