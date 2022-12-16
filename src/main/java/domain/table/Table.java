@@ -1,8 +1,13 @@
 package domain.table;
 
+import domain.Menu;
+import domain.order.OrderMenus;
+import java.util.Map;
+
 public class Table {
     private final int number;
     private TableStatus tableStatus = TableStatus.READY;
+    private OrderMenus orderMenus = new OrderMenus();
 
     public Table(final int number) {
         this.number = number;
@@ -27,5 +32,9 @@ public class Table {
         }
 
         return TableOutputFormat.BOTTOM_LINE_ORDERED.getFormat();
+    }
+
+    public void enrollOrder(Menu menu, int quantity) {
+        orderMenus.addMenu(menu, quantity);
     }
 }

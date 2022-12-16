@@ -60,6 +60,10 @@ public class OutputView {
         lineBreak();
     }
 
+    public void printOverMaxQuantity() {
+        System.out.println("최대 주문 가능 수량은 99개 입니다.");
+    }
+
     private void lineBreak() {
         System.out.println();
     }

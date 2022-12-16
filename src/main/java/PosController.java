@@ -56,8 +56,11 @@ public class PosController {
         SelectRequest menuRequest = inputView.getMenu();
         SelectRequest quantityRequest = inputView.getQuantity();
         Menu menu = MenuRepository.findByMenuNumber(menuRequest.getNumber());
-
-
+        try {
+            table.enrollOrder(menu, quantityRequest.getNumber());
+        } catch (IllegalArgumentException e) {
+            outputView.printOverMaxQuantity();
+        }
     }
 
 
