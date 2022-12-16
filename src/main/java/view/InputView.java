@@ -1,7 +1,7 @@
 package view;
 
 import java.util.Scanner;
-import view.dto.request.MainOptionRequest;
+import view.dto.request.PosJobRequest;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
@@ -18,10 +18,10 @@ public class InputView {
         return scanner.nextInt();
     }
 
-    public MainOptionRequest getMainOptionRequest() {
+    public PosJobRequest getMainOptionRequest() {
         System.out.println("## 주문할 테이블을 선택하세요.");
         String userInput = scanner.nextLine();
 
-        return MainOptionRequest.of(userInput);
+        return PosJobRequest.of(userInput);
     }
 }

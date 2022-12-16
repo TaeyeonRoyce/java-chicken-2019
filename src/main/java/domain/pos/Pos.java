@@ -1,42 +1,28 @@
 package domain.pos;
 
-import domain.MainOption;
-import view.InputView;
-import view.OutputView;
-import view.dto.request.MainOptionRequest;
-
 public class Pos {
-    private final InputView inputView;
-    private final OutputView outputView;
-    private final PosStatus posStatus = PosStatus.RUN;
+    private PosStatus posStatus = PosStatus.RUN;
 
-    public Pos(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    private PosJob currentPosJob;
+
+    private Pos() {
     }
 
-    public void run() {
-        MainOption[] mainOptions = MainOption.values();
-        outputView.mainView(mainOptions);
-
-        MainOptionRequest mainOptionRequest = inputView.getMainOptionRequest();
-
-        workBySelectedOption(mainOptionRequest.toMainOption());
+    public static Pos getInstance() {
+        return new Pos();
     }
 
-    private void workBySelectedOption(MainOption option) {
-        if (option == MainOption.ENROLL) {
-//            enroll();
+
+    public void updateByPosJob(PosJob posJob) {
+        if (posJob == PosJob.EXIT) {
+            this.posStatus = PosStatus.TERMINATE;
             return;
         }
 
-        if (option == MainOption.PAY) {
-//            pay();
-            return;
-        }
+        currentPosJob = posJob;
     }
 
-    public PosStatus status() {
-        return posStatus;
+    public boolean isPosRunnable() {
+        return this.posStatus == PosStatus.RUN;
     }
 }

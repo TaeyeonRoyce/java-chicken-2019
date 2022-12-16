@@ -1,15 +1,15 @@
 import domain.pos.Pos;
-import domain.pos.PosStatus;
+import domain.pos.PosController;
 import view.InputView;
 import view.OutputView;
 
 public class Application {
     // TODO 구현 진행
     public static void main(String[] args) {
-
-        Pos pos = new Pos(InputView.getInstance(), OutputView.getInstance());
+        PosController posController =
+                new PosController(InputView.getInstance(), OutputView.getInstance(), Pos.getInstance());
         do {
-            pos.run();
-        } while (pos.status() == PosStatus.RUN);
+            posController.run();
+        } while (posController.isProgramRunnable());
     }
 }

@@ -1,6 +1,6 @@
 package view;
 
-import domain.MainOption;
+import domain.pos.PosJob;
 import domain.Menu;
 import domain.Table;
 
@@ -18,10 +18,10 @@ public class OutputView {
         return new OutputView();
     }
 
-    public void mainView(MainOption[] mainOptions) {
+    public void mainView(PosJob[] posJobs) {
         System.out.println("## 메인화면");
-        for (MainOption mainOption : mainOptions) {
-            System.out.println(mainOption.outputFormat());
+        for (PosJob posJob : posJobs) {
+            System.out.println(posJob.outputFormat());
         }
     }
 
