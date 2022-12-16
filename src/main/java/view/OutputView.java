@@ -1,5 +1,6 @@
 package view;
 
+import domain.MainOption;
 import domain.Menu;
 import domain.Table;
 
@@ -17,11 +18,11 @@ public class OutputView {
         return new OutputView();
     }
 
-    public void mainView() {
-        System.out.println("## 메인화면\n"
-                + "1 - 주문등록\n"
-                + "2 - 결제하기\n"
-                + "3 - 프로그램 종료");
+    public void mainView(MainOption[] mainOptions) {
+        System.out.println("## 메인화면");
+        for (MainOption mainOption : mainOptions) {
+            System.out.println(mainOption.outputFormat());
+        }
     }
 
     public static void printTables(final List<Table> tables) {

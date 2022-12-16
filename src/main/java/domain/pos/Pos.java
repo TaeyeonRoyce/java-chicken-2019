@@ -1,5 +1,6 @@
 package domain.pos;
 
+import domain.MainOption;
 import view.InputView;
 import view.OutputView;
 
@@ -14,8 +15,10 @@ public class Pos {
     }
 
     public void run() {
-        outputView.mainView();
-        inputView.selectFunction();
+        MainOption[] mainOptions = MainOption.values();
+        outputView.mainView(mainOptions);
+
+//        inputView.selectFunction();
     }
 
     public PosStatus status() {
