@@ -13,29 +13,29 @@ public class InputView {
         return new InputView();
     }
 
-    public static int inputTableNumber() {
-        System.out.println("## 주문할 테이블을 선택하세요.");
-        return scanner.nextInt();
-    }
-
     public SelectRequest getMainOptionRequest() {
-        System.out.println("## 원하는 기능을 선택하세요.");
-        String userInput = scanner.nextLine();
-        System.out.println();
-
-        return SelectRequest.of(userInput);
+        String message = "## 원하는 기능을 선택하세요.";
+        return getSelectRequest(message);
     }
 
     public SelectRequest getTableSelection() {
-        System.out.println("## 테이블을 선택하세요.");
+        String message = "## 테이블을 선택하세요.";
+        return getSelectRequest(message);
+    }
+
+    public SelectRequest getMenu() {
+
+        String message = "## 등록할 메뉴를 선택하세요.";
+        return getSelectRequest(message);
+    }
+
+    private SelectRequest getSelectRequest(String message) {
+        System.out.println(message);
         String userInput = scanner.nextLine();
         System.out.println();
 
         return SelectRequest.of(userInput);
     }
-
-//    public SelectRequest getMenu() {
-//    }
 //
 //    public void getMenu() {
 //    }
