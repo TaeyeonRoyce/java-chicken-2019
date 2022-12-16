@@ -19,9 +19,9 @@ public class InputView {
     }
 
     public PosJobRequest getMainOptionRequest() {
-        System.out.println("## 주문할 테이블을 선택하세요.");
+        System.out.println("## 원하는 기능을 선택하세요.");
         String userInput = scanner.nextLine();
-
+        System.out.println();
         return PosJobRequest.of(userInput);
     }
 }

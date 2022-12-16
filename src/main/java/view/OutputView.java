@@ -20,22 +20,34 @@ public class OutputView {
         for (PosJob posJob : posJobs) {
             System.out.println(posJob.outputFormat());
         }
+        System.out.println();
     }
 
     public void printTables(final List<Table> tables) {
         System.out.println("## 테이블 목록");
+        printTopLine(tables);
+        printTableLine(tables);
+        printBottomLine(tables);
+        System.out.println();
+    }
+
+    private void printBottomLine(List<Table> tables) {
         for (Table table : tables) {
-            System.out.print(table.topLine());
+            System.out.print(table.bottomLine());
         }
         System.out.println();
+    }
 
+    private void printTableLine(List<Table> tables) {
         for (Table table : tables) {
             System.out.print(table.tableFormat());
         }
         System.out.println();
+    }
 
+    private void printTopLine(List<Table> tables) {
         for (Table table : tables) {
-            System.out.print(table.bottomLine());
+            System.out.print(table.topLine());
         }
         System.out.println();
     }
