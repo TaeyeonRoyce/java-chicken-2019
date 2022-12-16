@@ -1,5 +1,6 @@
-package domain.pos;
-
+import domain.pos.Pos;
+import domain.pos.PosJob;
+import domain.table.TableRepository;
 import view.InputView;
 import view.OutputView;
 import view.dto.request.PosJobRequest;
@@ -16,15 +17,34 @@ public class PosController {
     }
 
     public void run() {
+        PosJob posJob = requestPosJob();
+        if (!isProgramRunnable()) {
+            return;
+        }
+
+        int tableSelection = requestTableSelection();
+    }
+
+    private PosJob requestPosJob() {
         PosJob[] posJobs = PosJob.values();
         outputView.mainView(posJobs);
 
         PosJobRequest posJobRequest = inputView.getMainOptionRequest();
 
-        pos.updateByPosJob(posJobRequest.toPosJob());
+        PosJob posJob = posJobRequest.toPosJob();
+        pos.updateByPosJob(posJob);
+        return posJob;
+    }
+
+    private int requestTableSelection() {
+        outputView.printTables(TableRepository.tables());
+
+        return 0;
     }
 
     public boolean isProgramRunnable() {
         return pos.isPosRunnable();
     }
+
+
 }

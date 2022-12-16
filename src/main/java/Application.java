@@ -1,5 +1,4 @@
 import domain.pos.Pos;
-import domain.pos.PosController;
 import view.InputView;
 import view.OutputView;
 
