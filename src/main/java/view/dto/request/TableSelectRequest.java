@@ -26,4 +26,8 @@ public class TableSelectRequest {
             throw new IllegalArgumentException();
         }
     }
+
+    public int getTableNumber() {
+        return tableNumber;
+    }
 }

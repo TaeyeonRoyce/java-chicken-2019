@@ -1,9 +1,11 @@
 import domain.pos.Pos;
 import domain.pos.PosJob;
+import domain.table.Table;
 import domain.table.TableRepository;
 import view.InputView;
 import view.OutputView;
 import view.dto.request.PosJobRequest;
+import view.dto.request.TableSelectRequest;
 
 public class PosController {
     private final InputView inputView;
@@ -22,7 +24,7 @@ public class PosController {
             return;
         }
 
-        int tableSelection = requestTableSelection();
+        Table tableSelection = requestTableSelection();
     }
 
     private PosJob requestPosJob() {
@@ -36,11 +38,11 @@ public class PosController {
         return posJob;
     }
 
-    private int requestTableSelection() {
+    private Table requestTableSelection() {
         outputView.printTables(TableRepository.tables());
-        inputView.getTableSelection();
+        TableSelectRequest tableSelectionRequest = inputView.getTableSelection();
 
-        return 0;
+        return TableRepository.findByTableNumber(tableSelectionRequest.getTableNumber());
     }
 
     public boolean isProgramRunnable() {

@@ -8,6 +8,10 @@ public class Table {
         this.number = number;
     }
 
+    public boolean matchNumber(int tableNumber) {
+        return this.number == tableNumber;
+    }
+
     public String topLine() {
         return TableOutputFormat.TOP_LINE.getFormat();
     }
