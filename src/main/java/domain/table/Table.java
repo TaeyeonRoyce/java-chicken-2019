@@ -36,5 +36,10 @@ public class Table {
 
     public void enrollOrder(Menu menu, int quantity) {
         orderMenus.addMenu(menu, quantity);
+        tableStatus = TableStatus.ORDERED;
+    }
+
+    public String orderMenusFormat() {
+        return orderMenus.format();
     }
 }

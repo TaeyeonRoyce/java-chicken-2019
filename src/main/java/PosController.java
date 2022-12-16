@@ -41,7 +41,7 @@ public class PosController {
             enrollOrder(selectedTable);
             return;
         }
-//        pay(selectedTable);
+        pay(selectedTable);
     }
 
     private Table requestTableSelection() {
@@ -61,6 +61,10 @@ public class PosController {
         } catch (IllegalArgumentException e) {
             outputView.printOverMaxQuantity();
         }
+    }
+
+    private void pay(Table table) {
+        outputView.printOrderStatus(table);
     }
 
 

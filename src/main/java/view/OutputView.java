@@ -64,7 +64,15 @@ public class OutputView {
         System.out.println("최대 주문 가능 수량은 99개 입니다.");
     }
 
+    public void printOrderStatus(Table table) {
+        System.out.println("## 주문 내역");
+        System.out.println("메뉴 수량 금액");
+        System.out.println(table.orderMenusFormat());
+    }
+
     private void lineBreak() {
         System.out.println();
     }
+
+
 }

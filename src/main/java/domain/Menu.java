@@ -18,6 +18,15 @@ public class Menu {
     public boolean matchNumber(int menuNumber) {
         return this.number == menuNumber;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
     @Override
     public String toString() {
         return category + " " + number + " - " + name + " : " + price + "원";
