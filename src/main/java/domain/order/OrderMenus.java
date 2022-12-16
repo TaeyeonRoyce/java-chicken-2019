@@ -31,6 +31,18 @@ public class OrderMenus {
     }
 
     public int getTotalPrice() {
-        return 0;
+        int totalPrice = 0;
+        for (Menu menu : orders.keySet()) {
+            totalPrice += orders.get(menu) * menu.getPrice();
+        }
+        int discountAmount = getDiscountAmount();
+        return totalPrice - discountAmount;
+    }
+
+    private  int getDiscountAmount() {
+        int chickenQuantity = orders.keySet().stream().filter(Menu::isChicken)
+                .mapToInt(orders::get)
+                .sum();
+        return (chickenQuantity / 10) * 10_000;
     }
 }

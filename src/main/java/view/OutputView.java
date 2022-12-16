@@ -70,9 +70,15 @@ public class OutputView {
         System.out.println(table.orderMenusFormat());
     }
 
+    public void printTotalPrice(int totalPrice) {
+        System.out.println("## 최종 결제할 금액");
+        System.out.printf("%d원\n", totalPrice);
+        lineBreak();
+    }
     private void lineBreak() {
         System.out.println();
     }
+
 
 
 }

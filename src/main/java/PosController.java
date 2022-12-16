@@ -69,7 +69,8 @@ public class PosController {
         SelectRequest paymentMethodRequest = inputView.getPaymentMethod(table.getNumber());
         PaymentMethod paymentMethod = PaymentMethod.fromCommandCode(paymentMethodRequest.getNumber());
 
-        table.payWith(paymentMethod);
+        int totalPrice = table.payWith(paymentMethod);
+        outputView.printTotalPrice(totalPrice);
     }
 
 

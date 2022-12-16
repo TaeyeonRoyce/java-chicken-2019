@@ -48,7 +48,12 @@ public class Table {
         return orderMenus.format();
     }
 
-    public String payWith(PaymentMethod paymentMethod) {
-        orderMenus.getTotalPrice();
+    public int payWith(PaymentMethod paymentMethod) {
+        int totalPrice = orderMenus.getTotalPrice();
+        if (paymentMethod == PaymentMethod.CASH) {
+            totalPrice *= 0.95;
+        }
+        this.tableStatus = TableStatus.READY;
+        return totalPrice;
     }
 }
