@@ -18,10 +18,6 @@ public class Table {
         return this.number == tableNumber;
     }
 
-    public int getNumber() {
-        return number;
-    }
-
     public String topLine() {
         return TableOutputFormat.TOP_LINE.getFormat();
     }
@@ -55,5 +51,13 @@ public class Table {
         }
         this.tableStatus = TableStatus.READY;
         return totalPrice;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public TableStatus getTableStatus() {
+        return tableStatus;
     }
 }
